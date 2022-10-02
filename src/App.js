@@ -1,7 +1,7 @@
 import {useState, useReducer} from 'react'
 import UserBar from './user/UserBar'
-import ToDoList from './ToDo/ToDoList';
-import CreateToDo from './ToDo/CreateToDo';
+import ToDoList from './toDo/ToDoList';
+import CreateToDo from './toDo/CreateToDo';
 import appReducer from './reducers';
 import {v4 as uuidv4} from 'uuid';
 import React from "react"
