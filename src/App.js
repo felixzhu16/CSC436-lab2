@@ -13,13 +13,15 @@ function App() {
       title: "To do 1",
       description: "First to do item",
       author: "Felix",
-      id: uuidv4()
+      id: uuidv4(),
+      dateCreated: new Date(Date.now()).toString()
     },
     {
       title: "SECOND ONE",
       description: "hope this works",
       author: "Felix",
-      id: uuidv4()
+      id: uuidv4(),
+      dateCreated: new Date(Date.now()).toString()
     }
   ]
 
@@ -34,7 +36,7 @@ function App() {
         <UserBar user={state.user} dispatch={dispatch} />
         <ToDoList ToDos = {state.ToDos} />
         {state.user && (
-          <CreateToDo user={state.user} ToDos={state.ToDos} dispatch={dispatch}/>
+          <CreateToDo user={state.user} ToDos={state.ToDos} dateCreated={state.dateCreated} dispatch={dispatch}/>
         )}
       </div>
     )
