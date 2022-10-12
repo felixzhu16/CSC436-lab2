@@ -1,7 +1,6 @@
 import Login from './Login'
 import Logout from './Logout'
 import Register from './Register'
-import { useState } from 'react'
 import React from "react"
 
 export default function UserBar({user, dispatch}) {

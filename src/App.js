@@ -1,4 +1,4 @@
-import {useState, useReducer} from 'react'
+import {useReducer} from 'react'
 import UserBar from './user/UserBar'
 import ToDoList from './toDo/ToDoList';
 import CreateToDo from './toDo/CreateToDo';
@@ -30,11 +30,15 @@ function App() {
     ToDos: InitialToDos,
   })
 
+  function handleDelete(id){
+    dispatch({type:"DELETE_TODO", id})
+  }
+
 
     return (
       <div>
         <UserBar user={state.user} dispatch={dispatch} />
-        <ToDoList ToDos = {state.ToDos} />
+        <ToDoList ToDos = {state.ToDos} handleDelete = {handleDelete}/>
         {state.user && (
           <CreateToDo user={state.user} ToDos={state.ToDos} dateCreated={state.dateCreated} dispatch={dispatch}/>
         )}
