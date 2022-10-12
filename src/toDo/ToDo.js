@@ -21,7 +21,7 @@ export default function ToDo({title, description, author, dateCreated, todo, han
                 <p>Date Created: {dateCreated}</p>
                 <p>Date Completed: {check ? dateCompleted : ""}</p>
                 <i>Written by <b>{author}</b></i>
-                <button type="button" onClick={() => handleDelete(todo)}>Delete</button>
+                <button type="button" onClick={() => handleDelete(todo.id)}>Delete</button>
             </div>
         </div>
     )   
