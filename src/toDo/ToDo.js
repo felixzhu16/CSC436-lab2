@@ -1,7 +1,7 @@
 import { useState } from "react"
 import React from "react"
 
-export default function ToDo({title, description, author, dateCreated}){
+export default function ToDo({title, description, author, dateCreated, todo, handleDelete}){
     const [check, setCheck] = useState(false)
     const [dateCompleted, setDateCompleted ] = useState('')
 
@@ -21,6 +21,7 @@ export default function ToDo({title, description, author, dateCreated}){
                 <p>Date Created: {dateCreated}</p>
                 <p>Date Completed: {check ? dateCompleted : ""}</p>
                 <i>Written by <b>{author}</b></i>
+                <button type="button" onClick={() => handleDelete(todo)}>Delete</button>
             </div>
         </div>
     )   
