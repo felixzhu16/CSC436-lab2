@@ -1,18 +1,22 @@
 import { useState } from "react"
 import React from "react"
+import { useContext } from "react"
+import { ThemeContext } from "../contexts"
 
-export default function ToDo({title, description, author, dateCreated, todo, handleDelete}){
+function ToDo({title, description, author, dateCreated, todo, handleDelete}){
     const [check, setCheck] = useState(false)
     const [dateCompleted, setDateCompleted ] = useState('')
+    const{secondaryColor} = useContext(ThemeContext)
 
     const handleCheck = () => {
         setCheck(!check)
         setDateCompleted(new Date(Date.now()).toString())
     }
 
+    console.log("Todo rendered")
     return (
         <div>
-            <h3>{title}</h3>
+            <h3 style={{color:secondaryColor}}>{title}</h3>
             <input type="checkbox" id="box" name="boxname" check = {check} onChange={handleCheck} />
             <label for="box">{description}</label> 
             <div>
@@ -26,4 +30,6 @@ export default function ToDo({title, description, author, dateCreated, todo, han
         </div>
     )   
 }
+
+export default React.memo(ToDo);
 

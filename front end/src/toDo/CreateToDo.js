@@ -1,15 +1,28 @@
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
 import { v4 as uuidv4} from "uuid"
+import { useResource } from "react-request-hook"
 import React from "react"
+import { StateContext } from "../contexts"
 
-export default function CreateToDo({user, ToDos, dispatch}){
+export default function CreateToDo(){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const [error, setError] = useState(false);
+    const { state, dispatch } = useContext(StateContext);
+    const { user } = state;
+
+
+    const [ToDo, createToDo] = useResource(({ title, description, author }) => ({
+        url: "/posts",
+        method: "post",
+        data: { title, description, author },
+      }));
     
     return (
         <form 
             onSubmit={e => {
                 e.preventDefault(); 
+                createToDo({title, description, author:user});
                 dispatch({
                     type: "CREATE_TODO", 
                     title, 
