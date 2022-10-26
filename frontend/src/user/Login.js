@@ -3,7 +3,7 @@ import { useResource } from "react-request-hook"
 import { StateContext } from "../contexts";
 
 export default function Login() {
-    const [ username, setUsername ] = useState('')
+    const [ username, setUsername ] = useState("")
     const [loginFailed, setLoginFailed] = useState(false);
     const [password, setPassword] = useState("");
   
@@ -18,20 +18,21 @@ export default function Login() {
     function handlePassword(evt) {
         setPassword(evt.target.value);
     }
-    
-    useEffect(() => {
-        if (user?.data?.user) {
-          setLoginFailed(false);
-          dispatch({ type: "LOGIN", username: user.data.user.email });
-        }
-    
-        if (user?.error) {
-          console.log(user?.error);
-          setLoginFailed(true);
-        }
-    }, [user]);
 
-    
+    useEffect(()=>{
+      // if(user?.data?.user){ optional chaining was failing to compile and unsure why
+      if(user && user.data && user.data.user){
+        setLoginFailed(false);
+        dispatch({type:"LOGIN", username: user.data.user.email});
+      }
+      // if(user?.error){ samep problem as above
+      if(user && user.error){
+        // console.log(user?.error);
+        console.log(user && user.error);
+        setLoginFailed(true);
+      }
+    }, [user])
+
     return (
         <>
         {loginFailed && (
