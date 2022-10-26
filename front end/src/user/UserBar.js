@@ -7,8 +7,9 @@ const Logout = React.lazy(() => import("./Logout"))
 export default function UserBar() {
     const{state} = useContext(StateContext);
     if (state.user) { 
-        return <Logout/> 
+        return <Logout /> 
     }
+    
     else {
         return (
             <>
