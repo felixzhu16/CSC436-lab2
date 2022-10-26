@@ -1,0 +1,65 @@
+{
+    "ToDos": [
+
+      {
+        "title": "test",
+        "description": "test",
+        "author": "test",
+        "id": 1
+      },
+      {
+        "title": "test 2",
+        "description": "test",
+        "author": "test",
+        "id": 2
+      },
+      {
+        "title": "test2",
+        "description": "test2",
+        "author": "test@test.net",
+        "id": 3
+      },
+      {
+        "title": "test3",
+        "description": "test3",
+        "author": "test@test.net",
+        "id": 4
+      },
+      {
+        "title": "test",
+        "description": "test",
+        "author": "test@test.net",
+        "id": 5
+      }
+
+    ],
+    "users": [
+      {
+        "email": "test@test.net",
+        "password": "$2a$10$YpIJwlVCjouYaxvQnELc6uTtRKRc9I6vUEtO1qYuFU9PgyO4/nPiS",
+        "id": 1
+      },
+      {
+        "email": "test2@test.net",
+        "password": "$2a$10$2R927sNapaf0h05D3YK7AOXzoeqjTUCAohNQtStrijgxFMiTSQmYW",
+        "id": 2
+      }
+    ],
+    "themes": [
+      {
+        "id": 1,
+        "primaryColor": "deepskyblue",
+        "secondaryColor": "coral"
+      },
+      {
+        "id": 2,
+        "primaryColor": "red",
+        "secondaryColor": "blue"
+      },
+      {
+        "id": 3,
+        "primaryColor": "green",
+        "secondaryColor": "yellow"
+      }
+    ]
+  }

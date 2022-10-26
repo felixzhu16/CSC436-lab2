@@ -20,12 +20,12 @@ export default function Login() {
     }
     
     useEffect(() => {
-        if (user?.data?.user) {
+      if (user?.data?.user) { 
           setLoginFailed(false);
           dispatch({ type: "LOGIN", username: user.data.user.email });
         }
-    
-        if (user?.error) {
+
+      if (user?.error) {
           console.log(user?.error);
           setLoginFailed(true);
         }

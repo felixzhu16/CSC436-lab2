@@ -24,7 +24,8 @@ function userReducer(state, action) {
       // Trying to get delete to work
       case "DELETE_TODO":
         return state.filter((todo)=> todo.id !== action.id)
-
+      case "FETCH_TODOS":
+        return action.ToDos
       default:
         return state;
     }

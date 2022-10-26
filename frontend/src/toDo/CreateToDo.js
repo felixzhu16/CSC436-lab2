@@ -13,7 +13,7 @@ export default function CreateToDo(){
 
 
     const [ToDo, createToDo] = useResource(({ title, description, author }) => ({
-        url: "/posts",
+        url: "/ToDos",
         method: "post",
         data: { title, description, author },
       }));
