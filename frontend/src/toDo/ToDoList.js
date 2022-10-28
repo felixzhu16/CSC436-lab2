@@ -9,7 +9,7 @@ export default function ToDoList ({handleDelete,} ) {
     const{ToDos} = state
     return (
         <div>
-            {ToDos.map((p) => (<ToDo {...p} key={p.id}  todo = {p} handleDelete = {handleDelete}/>))}
+            {ToDos.map((p) => (<ToDo {...p} key={p.id}  todo = {p}/>))}
         </div>
     )
 }

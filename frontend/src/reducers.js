@@ -18,12 +18,24 @@ function userReducer(state, action) {
           description: action.description,
           author: action.author,
           id: action.id,
-          dateCreated: action.dateCreated
+          dateCreated: action.dateCreated,
+          complete: action.complete,
+          dateCompleted: action.dateCompleted
+
         };
         return [newToDo, ...state];
       // Trying to get delete to work
       case "DELETE_TODO":
         return state.filter((todo)=> todo.id !== action.id)
+      case "TOGGLE_TODO":
+        state.map((todo)=>{
+          if(todo.id === action.id){
+            return {...todo, 
+              complete: !todo.complete,
+              dateCompleted: action.dateCompleted
+            };
+          }
+        })
       case "FETCH_TODOS":
         return action.ToDos
       default:

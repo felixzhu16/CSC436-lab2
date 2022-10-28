@@ -19,7 +19,7 @@ export default function Register() {
 
     const [user, register] = useResource((username, password) => ({
         url: "/users",
-        method: "post",
+        method: "POST",
         data: { email: username, password },
       }));
 
@@ -29,6 +29,7 @@ export default function Register() {
         dispatch({ type: "REGISTER", username: user.data.user.email });
         }
     }, [user]);
+    
 
     return (
         <form onSubmit={e => {

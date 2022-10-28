@@ -12,10 +12,6 @@ import ChangeTheme from './ChangeTheme';
 
 function App() {
 
-  function handleDelete(id){
-    dispatch({type:"DELETE_TODO", id})
-  }
-
   const InitialToDos = [];
 
   const [state, dispatch] = useReducer(appReducer, {
@@ -62,13 +58,8 @@ function App() {
             <React.Suspense fallback={"Loading..."}>
               <UserBar />
             </React.Suspense>
-            {/* <UserBar user={state.user} dispatch={dispatch} /> */}
-            {/* <ToDoList ToDos = {state.ToDos} handleDelete = {handleDelete}/> */}
             <ToDoList />
             {state.user && <CreateToDo/>}
-            {/* {state.user && (
-              <CreateToDo user={state.user} ToDos={state.ToDos} dateCreated={state.dateCreated} dispatch={dispatch}/>
-            )} */}
           </ThemeContext.Provider>
         </StateContext.Provider>
       </div>

@@ -8,28 +8,37 @@ export default function CreateToDo(){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [error, setError] = useState(false);
+    const [complete, setComplete] = useState(false);
+    const [dateCreated, setDateCreated] = useState(Date.now())
     const { state, dispatch } = useContext(StateContext);
     const { user } = state;
 
 
-    const [ToDo, createToDo] = useResource(({ title, description, author }) => ({
+    const [ToDo, createToDo] = useResource(({ title, description, author, dateCreated, complete }) => ({
         url: "/ToDos",
-        method: "post",
-        data: { title, description, author },
+        method: "POST",
+        data: { title, description, author, dateCreated, complete },
       }));
+    
+    useEffect(()=>{
+        if(ToDo?.data?.error){
+            setError(true)
+        }
+    },[ToDo])
     
     return (
         <form 
             onSubmit={e => {
                 e.preventDefault(); 
-                createToDo({title, description, author:user});
+                createToDo({title, description, author:user, dateCreated, complete});
                 dispatch({
                     type: "CREATE_TODO", 
                     title, 
                     description, 
                     author: user,
                     id: uuidv4(),
-                    dateCreated: new Date(Date.now()).toString()
+                    dateCreated: dateCreated.toString(),
+                    complete: false
                 });
             }}
         >

@@ -11,10 +11,11 @@ export default function Login() {
   
     const [user, login] = useResource((username, password) => ({
       url: "/login",
-      method: "post",
+      method: "POST",
       data: { email: username, password },
     }));
 
+    //most test passwords are: "testpassword"
     function handlePassword(evt) {
         setPassword(evt.target.value);
     }
