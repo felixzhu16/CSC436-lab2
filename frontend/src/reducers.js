@@ -31,10 +31,11 @@ function userReducer(state, action) {
         state.map((todo)=>{
           if(todo.id === action.id){
             return {...todo, 
-              complete: !todo.complete,
-              dateCompleted: action.dateCompleted
+              complete: todo.complete,
+              dateCompleted: (todo.dateCompleted === "") ? action.dateCompleted : ""
             };
           }
+          return todo;
         })
       case "FETCH_TODOS":
         return action.ToDos

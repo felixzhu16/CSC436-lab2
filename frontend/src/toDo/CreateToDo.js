@@ -9,7 +9,7 @@ export default function CreateToDo(){
     const [description, setDescription] = useState('')
     const [error, setError] = useState(false);
     const [complete, setComplete] = useState(false);
-    const [dateCreated, setDateCreated] = useState(Date.now())
+    const [dateCreated, setDateCreated] = useState(new Date(Date.now()).toString())
     const { state, dispatch } = useContext(StateContext);
     const { user } = state;
 
@@ -37,7 +37,7 @@ export default function CreateToDo(){
                     description, 
                     author: user,
                     id: uuidv4(),
-                    dateCreated: dateCreated.toString(),
+                    dateCreated: dateCreated,
                     complete: false
                 });
             }}

@@ -15,7 +15,7 @@ export default function Login() {
       data: { email: username, password },
     }));
 
-    //most test passwords are: "testpassword"
+    //most test passwords are: "password"
     function handlePassword(evt) {
         setPassword(evt.target.value);
     }
@@ -41,7 +41,6 @@ export default function Login() {
         <form onSubmit={e => {
             e.preventDefault(); 
             login(username, password);
-            // dispatch(({type:"LOGIN", username}));
             }}
         >
              <label htmlFor="login-username">Username:</label>
