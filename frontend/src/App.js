@@ -12,11 +12,11 @@ import ChangeTheme from './ChangeTheme';
 
 function App() {
 
-  const InitialToDos = [];
+  // const InitialToDos = [];
 
   const [state, dispatch] = useReducer(appReducer, {
     user: "",
-    ToDos: InitialToDos,
+    ToDos: [],
   });
 
   const { user } = state;
@@ -32,14 +32,17 @@ function App() {
 
 
   const [ToDos, getToDos] = useResource(() => ({
-    url: "/ToDos",
-    method: "get",
+    url: "/todo",
+    method: "GET",
+    headers: {Authorization: `${state?.user?.access_token}`}
   }));
 
-  useEffect(getToDos, []);
+  useEffect(()=>{ 
+    getToDos();
+  },[state?.user?.access_token]);
 
   useEffect(() => {
-    if (ToDos && ToDos.data) {
+    if (ToDos && ToDos.isLoading == false && ToDos.data) {
       dispatch({ type: "FETCH_TODOS", ToDos: ToDos.data.reverse() })
     }
   }, [ToDos])

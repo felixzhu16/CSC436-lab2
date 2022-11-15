@@ -11,7 +11,11 @@ export default function ToDoList () {
 
     return (
         <div>
-            {ToDos.map((p) => (<ToDo {...p} key={p.id}  todo = {p}/>))}
+            {/* {ToDos.map((p) => (<ToDo {...p} key={p.id}  />))} */}
+            <div>
+                {ToDos.length === 0 && <h2>No posts found.</h2>}
+                {ToDos.length > 0 && ToDos.map((p, i) => <ToDo {...p} _id={p._id} />)}
+            </div>
         </div>
     )
 }

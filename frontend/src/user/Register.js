@@ -7,6 +7,7 @@ export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
+    const [status, setStatus] = useState("");
 
     const { dispatch } = useContext(StateContext);
 
@@ -18,15 +19,18 @@ export default function Register() {
     }
 
     const [user, register] = useResource((username, password) => ({
-        url: "/users",
+        url: "auth/register",
         method: "POST",
-        data: { email: username, password },
+        data: { username, password, passwordConfirmation: password },
       }));
 
     useEffect(() => {
-    if (user && user.data && user.data.user.email) {
-        //user.error === undefined
-        dispatch({ type: "REGISTER", username: user.data.user.email });
+        if (user && user.isLoading === false && (user.data || user.error)) {
+            if (user.error) {
+                setStatus("Registration failed, please try again later.");
+              } else {
+                setStatus("Registration successful. You may now login.");
+            }
         }
     }, [user]);
     
@@ -46,6 +50,7 @@ export default function Register() {
             <input type="password" name="register-password-repeat" id="register-password-repeat" value={passwordRepeat} 
                                                                                                onChange={handlePasswordRepeat}  />
             <input type="submit" value="Register" disabled={username.length === 0 || password.length === 0 || password !== passwordRepeat} />
+            <p>{status}</p>
         </form>
     )
 }

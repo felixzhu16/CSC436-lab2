@@ -2,9 +2,12 @@ function userReducer(state, action) {
     switch (action.type) {
       case "LOGIN":
       case "REGISTER":
-        return action.username;
+        return{
+          username: action.username,
+          access_token: action.access_token,
+        };
       case "LOGOUT":
-        return "";
+        return null;
       default:
         return state;
     }
@@ -17,7 +20,7 @@ function userReducer(state, action) {
           title: action.title,
           description: action.description,
           author: action.author,
-          id: action.id,
+          _id: action.id,
           dateCreated: action.dateCreated,
           complete: action.complete,
           dateCompleted: action.dateCompleted
@@ -31,14 +34,16 @@ function userReducer(state, action) {
         state.map((todo)=>{
           if(todo.id === action.id){
             return {...todo, 
-              complete: todo.complete,
-              dateCompleted: (todo.dateCompleted === "") ? action.dateCompleted : ""
+              complete: action.complete,
+              dateCompleted: action.dateCompleted
             };
           }
           return todo;
         })
       case "FETCH_TODOS":
         return action.ToDos
+      case "CLEAR_TODOS":
+        return [];
       default:
         return state;
     }

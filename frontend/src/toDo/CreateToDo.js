@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react"
-import { v4 as uuidv4} from "uuid"
 import { useResource } from "react-request-hook"
 import React from "react"
 import { StateContext } from "../contexts"
@@ -14,35 +13,37 @@ export default function CreateToDo(){
     const { user } = state;
 
 
-    const [ToDo, createToDo] = useResource(({ title, description, author, dateCreated, complete }) => ({
-        url: "/ToDos",
+    const [ToDo, createToDo] = useResource(({ title, description, dateCreated, complete }) => ({
+        url: "/todo",
         method: "POST",
-        data: { title, description, author, dateCreated, complete },
+        headers: { Authorization: `${state.user.access_token}`},
+        data: { title, description, dateCreated, complete},
       }));
     
     useEffect(()=>{
-        if(ToDo?.data?.error){
-            setError(true)
+        if(ToDo.isLoading === false && ToDo.data){
+            dispatch({
+                type: "CREATE_TODO", 
+                title: ToDo.data.title,
+                description: ToDo.data.description,
+                author: user.username,
+                id: ToDo.data._id,
+                dateCreated: dateCreated,
+                complete: ToDo.data.complete,
+                dateCompleted: ToDo.data.dateCompleted
+            });
         }
     },[ToDo])
     
     return (
         <form 
             onSubmit={e => {
+                const currDate = new Date(Date.now()).toString()
                 e.preventDefault(); 
-                createToDo({title, description, author:user, dateCreated, complete});
-                dispatch({
-                    type: "CREATE_TODO", 
-                    title, 
-                    description, 
-                    author: user,
-                    id: uuidv4(),
-                    dateCreated: dateCreated,
-                    complete: false
-                });
+                createToDo({title, description, author:user.username, dateCreated: currDate, complete:false});
             }}
         >
-           <div>Author: <b>{user}</b></div>
+           <div>Author: <b>{user.username}</b></div>
            <div>
                <label htmlFor="create-title">Title:</label>
                <input type="text" 

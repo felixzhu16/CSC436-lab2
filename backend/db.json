@@ -1,15 +1,6 @@
 {
   "ToDos": [
     {
-      "title": "i hope this works",
-      "description": "toggle is failing still",
-      "author": "felixz@gmail.com",
-      "dateCreated": "Fri Oct 28 2022 16:41:49 GMT-0500 (Central Daylight Time)",
-      "complete": false,
-      "id": 1,
-      "dateCompleted": "Fri Oct 28 2022 16:44:42 GMT-0500 (Central Daylight Time)"
-    },
-    {
       "title": "kitchen",
       "description": "wash dishes",
       "author": "felixz@gmail.com",
@@ -32,7 +23,15 @@
       "dateCreated": "Fri Oct 28 2022 16:44:51 GMT-0500 (Central Daylight Time)",
       "complete": false,
       "id": 4,
-      "dateCompleted": "Fri Oct 28 2022 16:45:22 GMT-0500 (Central Daylight Time)"
+      "dateCompleted": "Fri Nov 04 2022 21:01:52 GMT-0500 (Central Daylight Time)"
+    },
+    {
+      "title": "litterbox",
+      "description": "scoop da poop",
+      "author": "cam@gmail.com",
+      "dateCreated": "Fri Oct 28 2022 19:42:50 GMT-0500 (Central Daylight Time)",
+      "complete": false,
+      "id": 5
     }
   ],
   "users": [
@@ -55,6 +54,11 @@
       "email": "felixz@gmail.com",
       "password": "$2a$10$P.S6RHm3U3nLz2yyEOt9S.jkqv.YanBPmy3WViNQmWCfFgAOqiUDi",
       "id": 4
+    },
+    {
+      "email": "cam@gmail.com",
+      "password": "$2a$10$zl1YjeRjPFb1qmKE.afMtenx7I0UTgt4qHP0vlWSOW/F3SyhZE/na",
+      "id": 5
     }
   ],
   "themes": [
