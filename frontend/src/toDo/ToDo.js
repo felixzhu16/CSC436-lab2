@@ -3,16 +3,15 @@ import React from "react"
 import { useContext } from "react"
 import { ThemeContext, StateContext  } from "../contexts"
 
-function ToDo({title, description, author, dateCreated, dateCompleted, complete, _id}){
+function ToDo({title, description, author, dateCreated, dateCompleted, complete, _id, todo}){
     const{secondaryColor} = useContext(ThemeContext)
     const{state, dispatch} = useContext(StateContext);
 
-    const [toggle, completeToDo] = useResource(() => ({
+    const [toggle, completeToDo] = useResource((_id) => ({
         url: "/todo/complete/" + _id,
         method: "PATCH",
         headers:  {Authorization: `${state.user.access_token}`},
-        data: {dateCompleted: new Date(Date.now()).toString(), complete: !complete},
-
+        data: {_id: _id, dateCompleted: new Date().toString(), complete: !complete},
       }));
 
     const[deleteToDo, deleteAction] = useResource((_id)=>({
@@ -27,8 +26,8 @@ function ToDo({title, description, author, dateCreated, dateCompleted, complete,
         <div>
             <h3 style={{color:secondaryColor}}>{title}</h3>
             <input type="checkbox" id="box" name="boxname" checked = {complete}  onChange={ ()=>{
-                completeToDo(); 
-                dispatch({type: "TOGGLE_TODO", _id, dateCompleted, complete})}}/>
+                completeToDo(_id); 
+                dispatch({type: "TOGGLE_TODO", _id, complete, dateCompleted})}}/>
             <label for="box">{description}</label> 
             <div>
                 <p>Task Status: <b>{complete ? "Complete" : "Incomplete"}</b></p>
@@ -36,7 +35,7 @@ function ToDo({title, description, author, dateCreated, dateCompleted, complete,
                 <p>Date Completed: {complete ? dateCompleted : ""}</p>
                 <i>Written by <b>{author}</b></i>
                 <p><button type="button" onClick={e => {
-                        e.preventDefault(); 
+                        // e.preventDefault(); 
                         deleteAction(_id);
                         dispatch({type: "DELETE_TODO", _id})
                         }}>Delete</button></p>

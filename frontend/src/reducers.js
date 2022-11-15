@@ -40,6 +40,7 @@ function userReducer(state, action) {
           }
           return todo;
         })
+        return state;
       case "FETCH_TODOS":
         return action.ToDos
       case "CLEAR_TODOS":

@@ -38,9 +38,9 @@ export default function CreateToDo(){
     return (
         <form 
             onSubmit={e => {
-                const currDate = new Date(Date.now()).toString()
+                // const currDate = new Date(Date.now()).toString()
                 e.preventDefault(); 
-                createToDo({title, description, author:user.username, dateCreated: currDate, complete:false});
+                createToDo({title, description, author:user.username, dateCreated: new Date().toString()});
             }}
         >
            <div>Author: <b>{user.username}</b></div>

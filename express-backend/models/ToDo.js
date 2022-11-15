@@ -7,7 +7,7 @@ const ToDoSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: "User" },
   complete: {type: Boolean, default: false},
   dateCreated: {type:String}, //Probably not the best to make this a string here, but we're always converting it...
-  dateCompleted: {type: String}
+  dateCompleted: {type: String, default: ""}
 });
 
 //Export model
