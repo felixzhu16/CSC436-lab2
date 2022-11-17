@@ -3,15 +3,15 @@ import React from "react"
 import { useContext } from "react"
 import { ThemeContext, StateContext  } from "../contexts"
 
-function ToDo({title, description, author, dateCreated, dateCompleted, complete, _id, todo}){
-    const{secondaryColor} = useContext(ThemeContext)
+function ToDo({title, description, author, dateCreated, dateCompleted, complete, _id}){
+    const{secondaryColor} = useContext(ThemeContext);
     const{state, dispatch} = useContext(StateContext);
 
     const [toggle, completeToDo] = useResource((_id) => ({
         url: "/todo/complete/" + _id,
         method: "PATCH",
         headers:  {Authorization: `${state.user.access_token}`},
-        data: {_id: _id, dateCompleted: new Date().toString(), complete: !complete},
+        data: {_id: _id, dateCompleted: complete ? "" : new Date().toString(), complete: !complete},
       }));
 
     const[deleteToDo, deleteAction] = useResource((_id)=>({
@@ -25,9 +25,9 @@ function ToDo({title, description, author, dateCreated, dateCompleted, complete,
     return (
         <div>
             <h3 style={{color:secondaryColor}}>{title}</h3>
-            <input type="checkbox" id="box" name="boxname" checked = {complete}  onChange={ ()=>{
+            <input type="checkbox" id="box" name="boxname" checked = {complete}  onClick={ ()=>{
                 completeToDo(_id); 
-                dispatch({type: "TOGGLE_TODO", _id, complete, dateCompleted})}}/>
+                dispatch({type: "TOGGLE_TODO", _id: _id, dateCompleted: complete ? "" : new Date().toString(), complete: !complete})}}/>
             <label for="box">{description}</label> 
             <div>
                 <p>Task Status: <b>{complete ? "Complete" : "Incomplete"}</b></p>

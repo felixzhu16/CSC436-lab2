@@ -57,7 +57,7 @@ router.delete("/delete/:id", async function (req, res, next){
   const todo = await ToDo.findOneAndDelete().where("_id").equals(req.params.id).exec();
   console.log(todo);
   console.log(req.params.id)
-  return res.status(200).json(todo)
+  return res.status(200).json(todo) 
 });
 
 router.patch("/complete/:id", async function (req, res, next){

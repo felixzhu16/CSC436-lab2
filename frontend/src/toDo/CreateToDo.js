@@ -7,8 +7,7 @@ export default function CreateToDo(){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [error, setError] = useState(false);
-    const [complete, setComplete] = useState(false);
-    const [dateCreated, setDateCreated] = useState(new Date(Date.now()).toString())
+    const [dateCreated, setDateCreated] = useState(new Date().toString())
     const { state, dispatch } = useContext(StateContext);
     const { user } = state;
 

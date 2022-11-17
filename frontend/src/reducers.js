@@ -30,16 +30,14 @@ function userReducer(state, action) {
       case "DELETE_TODO":
         return state.filter((todo)=> todo._id !== action._id)
       case "TOGGLE_TODO":
-          const update = state.map((todo)=>{
+          state.map((todo)=>{
           if(todo._id === action._id){
-            return {...todo, 
-              complete: action.complete,
-              dateCompleted: action.dateCompleted
-            };
+            todo.complete = action.complete;
+            todo.dateCompleted = action.dateCompleted;
           }
           return todo;
         })
-        return update;
+        return state;
       case "FETCH_TODOS":
         return action.ToDos
       case "CLEAR_TODOS":
